@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/IBANvalidator.iml" filepath="$PROJECT_DIR$/IBANvalidator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ibanvalidator/ibanvalidator.iml" filepath="$PROJECT_DIR$/ibanvalidator/ibanvalidator.iml" />
+    </modules>
+  </component>
+</project>
+
