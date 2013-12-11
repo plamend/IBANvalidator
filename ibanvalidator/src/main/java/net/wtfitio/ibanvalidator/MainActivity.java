@@ -121,8 +121,18 @@ public class MainActivity extends Activity {
                       }
                       Log.v("new_string",new_iban_str);
                       Log.v("new_string",to_validate);
-                      int out = Integer.valueOf(to_validate)%97;
-                      Log.v("result",String.valueOf(out));
+                      String n1 = to_validate.substring(0,9);
+                      String n2 = to_validate.substring(9,16);
+                      String n3 = to_validate.substring(17,24);
+                      String n4 = to_validate.substring(24,34);
+                      Log.v("n5",String.valueOf(to_validate.length()));
+
+                      Log.v("n1",n1);
+                      Log.v("n2",n2);
+                      Log.v("n3",n3);
+                      Log.v("n4",n4);
+
+
                   }
                   else{
 
