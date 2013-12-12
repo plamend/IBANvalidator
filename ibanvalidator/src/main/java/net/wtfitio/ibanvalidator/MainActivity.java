@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by plamend on 12/11/13.
  */
@@ -21,6 +23,7 @@ public class MainActivity extends Activity {
     Bundle country;
     Bundle alpha;
     String to_validate;
+    String result;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
@@ -122,23 +125,47 @@ public class MainActivity extends Activity {
                       Log.v("new_string",new_iban_str);
                       Log.v("new_string",to_validate);
                       int validate_lenght = to_validate.length();
-                      int to_devide = validate_lenght -9;
-                      int string_count = Math.round(to_devide%7);
-                      Log.v("round",String.valueOf(string_count));
-                      String n1 = to_validate.substring(0,9);
-                      String ost = String.valueOf(Integer.valueOf(n1)%97);
+                      ArrayList string = new ArrayList();
+                      int new1 = validate_lenght-9;
+                      int how_many = Math.round(new1%7);
 
-                      String n2 = to_validate.substring(9,16);
-                      String n3 = to_validate.substring(16,24);
-                      String n4 = to_validate.substring(24,34);
+                      int firs=0;
+                      int last=9;
+                      int k;
+                      String ost="";
+                      for (k=0;k<=how_many+1;k++){
+                        if(firs==0){
+                            ost =valid_math("",to_validate.substring(firs,last));
+                            firs=last;
+                            last+=7;
+                        }
+                          else{
+                            if (last<to_validate.length()){
+                                ost =valid_math(ost,to_validate.substring(firs,last));
+                                firs=last;
+                                last+=7;
+                            }
+                            else{
+                                result =valid_math(ost,to_validate.substring(firs,to_validate.length()));
+
+                            }
+                        }
+                      }
+
+
+
                       Log.v("n5",String.valueOf(validate_lenght));
 
-                      Log.v("n1",n1);
-                      Log.v("n1",ost);
-                      Log.v("n2",n2);
-                      Log.v("n3",n3);
-                      Log.v("n4",n4);
-//kk
+
+                     if(result.equals("1")){
+                         Toast.makeText(getBaseContext(),"Valid IBAN!!!",Toast.LENGTH_SHORT).show();
+                     }
+
+                      else{
+                         Toast.makeText(getBaseContext(),"NOTValid IBAN!!!",Toast.LENGTH_SHORT).show();
+
+                     }
+
 
                   }
                   else{
@@ -155,8 +182,10 @@ public class MainActivity extends Activity {
               String output="";
               int out = Integer.valueOf(str1.concat(str2));
               output = String.valueOf(out%97);
-
-
+              Log.v("str1",str1);
+              Log.v("str2",output);
+              Log.v("concat int",String.valueOf(out));
+              Log.v("valid_math",output);
               return output;
           }
 
