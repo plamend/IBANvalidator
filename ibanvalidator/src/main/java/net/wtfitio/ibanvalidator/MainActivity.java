@@ -121,13 +121,20 @@ public class MainActivity extends Activity {
                       }
                       Log.v("new_string",new_iban_str);
                       Log.v("new_string",to_validate);
+                      int validate_lenght = to_validate.length();
+                      int to_devide = validate_lenght -9;
+                      int string_count = Math.round(to_devide%7);
+                      Log.v("round",String.valueOf(string_count));
                       String n1 = to_validate.substring(0,9);
+                      String ost = String.valueOf(Integer.valueOf(n1)%97);
+
                       String n2 = to_validate.substring(9,16);
-                      String n3 = to_validate.substring(17,24);
+                      String n3 = to_validate.substring(16,24);
                       String n4 = to_validate.substring(24,34);
-                      Log.v("n5",String.valueOf(to_validate.length()));
+                      Log.v("n5",String.valueOf(validate_lenght));
 
                       Log.v("n1",n1);
+                      Log.v("n1",ost);
                       Log.v("n2",n2);
                       Log.v("n3",n3);
                       Log.v("n4",n4);
@@ -143,7 +150,19 @@ public class MainActivity extends Activity {
                   Toast.makeText(getBaseContext(),"Enter number!!",Toast.LENGTH_SHORT).show();
               }
           }
+
+          private String valid_math(String str1, String str2) {
+              String output="";
+              int out = Integer.valueOf(str1.concat(str2));
+              output = String.valueOf(out%97);
+
+
+              return output;
+          }
+
+
       });
+
 
 
     }
